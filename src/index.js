@@ -2,7 +2,7 @@ import parseInt from 'lodash/parseInt';
 import sample from 'lodash/sample';
 import random from 'lodash/random';
 
-const charNum = {
+export const prefix = {
   A: 10,
   B: 11,
   C: 12,
@@ -34,8 +34,8 @@ const charNum = {
 export function verify(value, format = /^[A-Z][12]\d{8}$/i) {
   if (!format.test(value)) return false;
 
-  const total = (Math.floor(charNum[value[0]] / 10) * 1) +
-                ((charNum[value[0]] % 10) * 9) +
+  const total = (Math.floor(prefix[value[0]] / 10) * 1) +
+                ((prefix[value[0]] % 10) * 9) +
                 (parseInt(value[1]) * 8) +
                 (parseInt(value[2]) * 7) +
                 (parseInt(value[3]) * 6) +
@@ -51,7 +51,7 @@ export function verify(value, format = /^[A-Z][12]\d{8}$/i) {
 
 export function generate(format = '##########') {
   const id = [
-    sample(Object.keys(charNum)),
+    sample(Object.keys(prefix)),
     random(1) + 1,
     random(9),
     random(9),
@@ -62,8 +62,8 @@ export function generate(format = '##########') {
     random(9),
   ].map((value, idx) => (/[A-Z0-9]/i.test(format[idx]) ? format[idx] : value));
 
-  const total = (Math.floor(charNum[id[0]] / 10) * 1) +
-                ((charNum[id[0]] % 10) * 9) +
+  const total = (Math.floor(prefix[id[0]] / 10) * 1) +
+                ((prefix[id[0]] % 10) * 9) +
                 (parseInt(id[1]) * 8) +
                 (parseInt(id[2]) * 7) +
                 (parseInt(id[3]) * 6) +

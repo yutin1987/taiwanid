@@ -1,6 +1,6 @@
 {
   "name": "taiwanid",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "Generator for Taiwan Id",
   "main": "lib/index.js",
   "scripts": {
