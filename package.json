@@ -1,0 +1,41 @@
+{
+  "name": "taiwanid",
+  "version": "1.0.1",
+  "description": "Generator for Taiwan Id",
+  "main": "lib/index.js",
+  "scripts": {
+    "prepublish": "npm run build",
+    "test": "eslint ./src; jest --coverage ./src",
+    "build": "rm -rf lib/* && babel src --ignore __tests__ --out-dir lib"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/yutin1987/taiwanid.git"
+  },
+  "author": "YuTin",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/yutin1987/taiwanid/issues"
+  },
+  "homepage": "https://github.com/yutin1987/taiwanid#readme",
+  "files": [
+    "lib"
+  ],
+  "devDependencies": {
+    "babel-cli": "^6.23.0",
+    "babel-core": "^6.23.1",
+    "babel-eslint": "^7.1.1",
+    "babel-jest": "^19.0.0",
+    "babel-polyfill": "^6.23.0",
+    "babel-preset-react-native": "^1.9.1",
+    "eslint": "^3.15.0",
+    "eslint-config-airbnb": "^14.1.0",
+    "eslint-plugin-import": "^2.2.0",
+    "eslint-plugin-jsx-a11y": "^4.0.0",
+    "eslint-plugin-react": "^6.9.0",
+    "jest": "^19.0.2"
+  },
+  "dependencies": {
+    "lodash": "^4.17.4"
+  }
+}
