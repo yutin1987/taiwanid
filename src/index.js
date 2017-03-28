@@ -1,6 +1,7 @@
 import parseInt from 'lodash/parseInt';
 import sample from 'lodash/sample';
 import random from 'lodash/random';
+import findKey from 'lodash/findKey';
 
 export const prefix = {
   A: 10,
@@ -76,4 +77,21 @@ export function generate(format = '##########') {
   id.push((10 - (total % 10)) % 10);
 
   return id.join('');
+}
+
+export function numberify(value) {
+  const prefixNum = prefix[value[0]];
+  const typeNum = prefix[value[1]] ? prefix[value[1]] : `0${value[1]}`;
+
+  return parseInt(`${prefixNum}${typeNum}${value.substr(2)}`);
+}
+
+export function stringify(value) {
+  const id = String(value);
+  const prefixNum = parseInt(id.substr(0, 2));
+  const prefixKey = findKey(prefix, num => (num === prefixNum));
+  const typeNum = parseInt(id.substr(2, 2));
+  const typeKey = typeNum > 9 ? findKey(prefix, num => (num === typeNum)) : typeNum;
+
+  return `${prefixKey}${typeKey}${id.substr(4)}`;
 }

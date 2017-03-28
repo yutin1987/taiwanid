@@ -1,5 +1,5 @@
 import random from 'lodash/random';
-import { generate, verify } from '../';
+import { generate, verify, numberify, stringify } from '../';
 
 it('generate & verify', async () => {
   const taiwanId = generate();
@@ -10,6 +10,13 @@ it('generate & verify', async () => {
 
 it('generate resident certificate', () => {
   expect(generate('FB2028116')).toBe('FB20281169');
+});
+
+it('numberify & stringify', () => {
+  expect(numberify('F127516085')).toBe(150127516085);
+  expect(numberify('FB20281169')).toBe(151120281169);
+  expect(stringify('150127516085')).toBe('F127516085');
+  expect(stringify('151120281169')).toBe('FB20281169');
 });
 
 it('custom generate & verify', async () => {
