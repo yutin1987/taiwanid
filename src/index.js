@@ -36,7 +36,7 @@ export function verify(value, format = /^[A-Z][12]\d{8}$/i) {
 
   const total = (Math.floor(prefix[value[0]] / 10) * 1) +
                 ((prefix[value[0]] % 10) * 9) +
-                (parseInt(value[1]) * 8) +
+                (parseInt(prefix[value[1]] ? prefix[value[1]] % 10 : value[1]) * 8) +
                 (parseInt(value[2]) * 7) +
                 (parseInt(value[3]) * 6) +
                 (parseInt(value[4]) * 5) +
@@ -64,7 +64,7 @@ export function generate(format = '##########') {
 
   const total = (Math.floor(prefix[id[0]] / 10) * 1) +
                 ((prefix[id[0]] % 10) * 9) +
-                (parseInt(id[1]) * 8) +
+                (parseInt(prefix[id[1]] ? prefix[id[1]] % 10 : id[1]) * 8) +
                 (parseInt(id[2]) * 7) +
                 (parseInt(id[3]) * 6) +
                 (parseInt(id[4]) * 5) +

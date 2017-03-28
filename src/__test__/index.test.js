@@ -4,6 +4,12 @@ import { generate, verify } from '../';
 it('generate & verify', async () => {
   const taiwanId = generate();
   expect(verify(taiwanId)).toBe(true);
+  expect(verify('F127516085')).toBe(true);
+  expect(verify('FB20281169', /^[A-Z][12A-D]\d{8}$/i)).toBe(true);
+});
+
+it('generate resident certificate', () => {
+  expect(generate('FB2028116')).toBe('FB20281169');
 });
 
 it('custom generate & verify', async () => {
