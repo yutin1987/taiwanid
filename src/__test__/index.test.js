@@ -1,5 +1,5 @@
 import random from 'lodash/random';
-import { generate, verify, numberify, stringify } from '../';
+import { generate, verify, makeup, numberify, stringify } from '../';
 
 it('generate & verify', async () => {
   const taiwanId = generate();
@@ -17,6 +17,11 @@ it('numberify & stringify', () => {
   expect(numberify('FB20281169')).toBe(151120281169);
   expect(stringify('150127516085')).toBe('F127516085');
   expect(stringify('151120281169')).toBe('FB20281169');
+});
+
+it('makeup', () => {
+  expect(makeup('127516085')).toEqual(['F', 'S']);
+  expect(makeup('B20281169')).toEqual(['F', 'S']);
 });
 
 it('custom generate & verify', async () => {

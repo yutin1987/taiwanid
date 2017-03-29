@@ -2,6 +2,8 @@ import parseInt from 'lodash/parseInt';
 import sample from 'lodash/sample';
 import random from 'lodash/random';
 import findKey from 'lodash/findKey';
+import filter from 'lodash/filter';
+import forEach from 'lodash/forEach';
 
 export const prefix = {
   A: 10,
@@ -77,6 +79,43 @@ export function generate(format = '##########') {
   id.push((10 - (total % 10)) % 10);
 
   return id.join('');
+}
+
+export function makeup(value, type = '12ABCD') {
+  const regex = new RegExp(`^([${type}])(\\d{8})$`, 'gi');
+  const id = regex.exec(value);
+  const reply = [];
+
+  if (!id) return reply;
+
+  const typeNum = parseInt(id[1]);
+
+  const total = (parseInt(id[2][0]) * 7) +
+                (parseInt(id[2][1]) * 6) +
+                (parseInt(id[2][2]) * 5) +
+                (parseInt(id[2][3]) * 4) +
+                (parseInt(id[2][4]) * 3) +
+                (parseInt(id[2][5]) * 2) +
+                (parseInt(id[2][6]) * 1) +
+                (parseInt(id[2][7]) * 1);
+
+  if (!typeNum) {
+    const idx = (prefix[id[1]] % 10) * 8;
+    forEach(prefix, (num, key) => {
+      if (((Math.floor(num / 10) * 1) + ((num % 10) * 9) + idx + total) % 10 === 0) {
+        reply.push(key);
+      }
+    });
+    return reply;
+  }
+
+  forEach(prefix, (num, key) => {
+    if (((Math.floor(num / 10) * 1) + ((num % 10) * 9) + (typeNum * 8) + total) % 10 === 0) {
+      reply.push(key);
+    }
+  });
+
+  return reply;
 }
 
 export function numberify(value) {
